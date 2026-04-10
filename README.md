@@ -1,42 +1,51 @@
-# Directional Drilling Analytics Engine 🚀
+# 3D Directional Drilling Engine 🚀
+
+🌍 Read this in: [English](README.md) | [Español](README.es.md) | [Deutsch](README.de.md)
+
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://streamlit.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**Desarrollado por:** Emilio Barrera (Ingeniero Mecánico - EPN)
+**Developed by:** Emilio Barrera (Mechanical Engineer)
 
-## 🎯 Descripción del Proyecto
-Herramienta de grado industrial para el cálculo y visualización 3D de trayectorias de pozos petroleros. A diferencia de aproximaciones geométricas básicas, este motor implementa el **Método de Curvatura Mínima Vectorizado**, optimizado mediante NumPy para el procesamiento eficiente de grandes volúmenes de datos direccionales (.LAS, .CSV).
+## 🎯 Project Description
+Industrial-grade web tool for the 3D calculation and visualization of oil well trajectories. Unlike basic geometric approximations, this engine implements the **Vectorized Minimum Curvature Method**, optimized using NumPy for the efficient processing of large volumes of directional data.
 
-Diseñado para asistir en el análisis de trayectorias, evaluación de severidad (DLS) y planificación de perforación.
+Designed to assist in trajectory analysis, Dogleg Severity (DLS) evaluation, and drilling planning.
 
-## 🧪 Validación Matemática (Equinor Volve Golden Dataset)
-La integridad matemática es el pilar de este proyecto. El motor de cálculo ha sido rigurosamente validado utilizando el dataset público del campo **Volve (Equinor)**.
-* **Algoritmo Base:** Método de Curvatura Mínima (Vectorized Implementation).
-* **Precisión:** Error relativo < 0.001% en comparación con los resultados de perfiles direccionales de software comercial estándar de la industria.
-* **Aseguramiento de Calidad (QA):** 2 pruebas unitarias automatizadas con `pytest` que garantizan la fiabilidad del cálculo de trayectoria y Dogleg Severity (DLS) frente al *Golden Dataset*.
+### ✨ Main Features
+* **Multi-format Support:** Robust parsing and automatic cleaning of raw field reports in `.csv`, `.txt`, and `.las` (Log ASCII Standard) formats.
+* **Internationalization (i18n):** Fully functional interface in 3 languages (English 🇬🇧, Spanish 🇪🇸, and German 🇩🇪) with state persistence to avoid losing progress when switching languages.
+* **Integrated Golden Dataset:** Automatic detection of test files. Includes real data from the **Volve field (Equinor)** ready to be executed with a single click.
+* **Precision Module:** High-precision directional interpolation interface to analyze inclination, azimuth, and coordinates at specific target depths.
 
-## 🛠️ Stack Tecnológico
-* **Core Matemático:** `NumPy`, `SciPy`, `Pandas` (Cálculo matricial y vectorial de alta velocidad).
-* **Interfaz de Usuario:** `Streamlit`.
-* **Visualización:** `Plotly` (Renderizado de modelos 3D interactivos y perfiles de estrés).
-* **Testing:** `Pytest` para validación y CI/CD.
+## 🧪 Mathematical Validation (Equinor Volve Golden Dataset)
+Mathematical integrity is the pillar of this project. The calculation engine has been rigorously validated using the public dataset from the **Volve field (Equinor)**.
+* **Core Algorithm:** Minimum Curvature Method (Vectorized Implementation).
+* **Precision:** Relative error < 0.001% compared to directional profile results from industry-standard commercial software.
+* **Quality Assurance (QA):** 2 automated unit tests using `pytest` that guarantee the reliability of the trajectory and Dogleg Severity (DLS) calculation against the *Golden Dataset* under ISCWSA standards.
 
-## 🚀 Instalación y Uso Local
-1. Clonar el repositorio:
+## 🛠️ Tech Stack
+* **Mathematical Core:** `NumPy`, `SciPy`, `Pandas` (High-speed matrix and vector calculus).
+* **Directional Parser:** `lasio` for metadata extraction and memory buffer decoders (`io.BytesIO`).
+* **User Interface:** `Streamlit`.
+* **Visualization:** `Plotly` (Interactive 3D model rendering and severity profiles).
+* **Testing:** `Pytest` for validation and CI/CD.
+
+## 🚀 Local Installation & Usage
+
+1. Clone the repository:
 ```bash
-git clone https://github.com/tu-usuario/perforacion-direccional-app.git
-cd perforacion-direccional-app
+    git clone https://github.com/ejbo2001/3D-directional-drilling-engine.git
+    cd 3D-directional-drilling-engine
 ```
-
-2. Crear entorno virtual e instalar dependencias:
+2. Create a virtual environment and install dependencies:
 ```bash
-python -m venv venv
-# En Windows: .\venv\Scripts\activate
-pip install -r requirements.txt
+    python -m venv venv
+    # On Windows: .\venv\Scripts\activate
+    pip install -r requirements.txt
 ```
-
-3. Ejecutar la aplicación:
+3. Run the application:
 ```bash
-streamlit run src/app.py
+    streamlit run src/app.py
 ```

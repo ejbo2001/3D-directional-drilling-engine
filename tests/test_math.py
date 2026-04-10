@@ -1,8 +1,15 @@
+import sys
+import os
 import pytest
 import numpy as np
 from numpy.testing import assert_allclose
 
-# Asegúrate de que 'app' sea el nombre de tu archivo principal (sin el .py)
+# --- SOLUCIÓN DE RUTAS (PATH INJECTION) ---
+# Le decimos a Python que añada la carpeta 'src' a su radar de búsqueda de módulos.
+# Así podrá encontrar 'engine.py' sin importar desde dónde ejecutemos pytest.
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+
+# Ahora sí, importamos sin problemas
 from engine import calcular_curvatura_minima_vectorizado 
 
 def test_volumen_curvatura_minima_volve_15_9_F_1():
@@ -17,7 +24,6 @@ def test_volumen_curvatura_minima_volve_15_9_F_1():
     ew_oficial = np.array([-3.53, -3.53, -3.53, -3.53, -3.53])
 
     # 3. EJECUTAR TU MOTOR MATEMÁTICO
-    # Cambia esto en ambas funciones de prueba:
     tvd_calc, ns_calc, ew_calc, dls_calc = calcular_curvatura_minima_vectorizado(
         md=md_vals,
         inc_deg=inc_vals,
@@ -32,7 +38,6 @@ def test_volumen_curvatura_minima_volve_15_9_F_1():
     assert_allclose(ns_calc, ns_oficial, atol=0.1, err_msg="Error en N/S")
     assert_allclose(ew_calc, ew_oficial, atol=0.1, err_msg="Error en E/W")
 
-    
     print("✅ Prueba de Curvatura Mínima superada con éxito (Sección Vertical).")
 
 
