@@ -63,7 +63,6 @@ if uploaded_file:
     if error_lectura:
         st.error(f"Error al leer el archivo: {error_lectura}")
     else:
-        # ... (Aquí continúa exactamente tu código actual desde st.subheader("1. Mapeo..."))
         st.subheader("1. Mapeo de Curvas (Mnemonics)")
         columnas_disponibles = df_raw.columns.tolist()
         
@@ -138,7 +137,7 @@ if uploaded_file:
             if tiene_originales:
                 with col_izq:
                     st.subheader("Trayectoria Original")
-                    fig_orig = go.Figure(data=[go.Scatter3d(x=df_raw[ew_sel], y=df_raw[ns_sel], z=df_raw[tvd_sel] * -1, mode='lines', line=dict(color=df_raw[tvd_sel], colorscale='Plasma', width=4))])
+                    fig_orig = go.Figure(data=[go.Scatter3d(x=df_raw[ew_sel], y=df_raw[ns_sel], z=df_raw[tvd_sel] * -1, mode='lines', line=dict(color=df_raw[tvd_sel], colorscale='Inferno', width=4))])
                     fig_orig.update_layout(scene=dict(aspectratio=dict(x=1, y=1, z=2)), margin=dict(l=0, r=0, b=0, t=0), height=500)
                     st.plotly_chart(fig_orig, use_container_width=True)
                 
