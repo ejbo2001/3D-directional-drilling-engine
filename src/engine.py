@@ -1,3 +1,9 @@
+# Copyright (C) 2026  Emilio Barrera
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 import numpy as np
 
 def calcular_curvatura_minima_vectorizado(md, inc_deg, azi_deg, tvd_tie=0.0, ns_tie=0.0, ew_tie=0.0):
