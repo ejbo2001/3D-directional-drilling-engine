@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "directional-drilling-engine"
+version = "0.1.0"
+description = "Wellbore trajectory validation using Vectorized Minimum Curvature."
+authors = [{ name = "Emilio Barrera", email = "emiliobarrera2001@gmail.com" }]
+license = { text = "GPL-3.0" }
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.24.0",
+    "pandas>=2.0.0",
+    "scipy>=1.10.0",
+    "streamlit>=1.30.0",
+    "plotly>=5.18.0",
+    "lasio>=0.30",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
