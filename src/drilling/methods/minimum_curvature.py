@@ -1,0 +1,1 @@
+"""Minimum Curvature trajectory calculation."""
