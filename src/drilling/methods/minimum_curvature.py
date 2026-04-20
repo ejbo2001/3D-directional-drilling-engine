@@ -9,6 +9,10 @@
 import numpy as np
 from numpy.typing import NDArray
 
+from drilling.survey import Survey
+from drilling.trajectory import Trajectory
+from drilling.units import UnitSystem
+
 
 def minimum_curvature_vectorized(
     md: NDArray[np.float64],
@@ -101,3 +105,41 @@ def minimum_curvature_vectorized(
     dls_calc = np.concatenate(([0.0], dls_interval))
 
     return tvd_calc, ns_calc, ew_calc, dls_calc
+
+
+def minimum_curvature(survey: Survey) -> Trajectory:
+    """Compute a Trajectory from a Survey using the Minimum Curvature Method.
+
+    High-level wrapper around :func:`minimum_curvature_vectorized` that
+    accepts a :class:`Survey` and returns a :class:`Trajectory`. Preferred
+    entry point for new code.
+
+    Parameters
+    ----------
+    survey : Survey
+        Validated survey input. The ``unit_system`` field determines the
+        DLS normalisation convention that applies to the returned ``dls``
+        array.
+
+    Returns
+    -------
+    Trajectory
+        Computed wellbore trajectory including TVD, northing, easting,
+        and DLS, with a reference back to the source ``survey``.
+
+    Notes
+    -----
+    In this stage only :attr:`UnitSystem.METRIC` is supported end-to-end
+    because :func:`minimum_curvature_vectorized` currently assumes metres
+    and DLS per 30 m. Passing a survey with ``unit_system`` set to
+    ``IMPERIAL`` raises :class:`NotImplementedError`.
+    """
+    if survey.unit_system is not UnitSystem.METRIC:
+        raise NotImplementedError(
+            "Imperial unit system not yet supported; scheduled for a later refactor stage."
+        )
+    tvd, ns, ew, dls = minimum_curvature_vectorized(
+        survey.md, survey.inc_deg, survey.azi_deg,
+        survey.tvd_tie, survey.ns_tie, survey.ew_tie,
+    )
+    return Trajectory(md=survey.md, tvd=tvd, ns=ns, ew=ew, dls=dls, source_survey=survey)
