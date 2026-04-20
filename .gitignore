@@ -1,4 +1,36 @@
-venv/
-__pycache__/
-.pytest_cache/
 *.pyc
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Packaging / distribution
+*.egg-info/
+build/
+dist/
+.eggs/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+
+# Testing / type-checking caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary diff artifacts (ad-hoc)
+*_diff.txt
