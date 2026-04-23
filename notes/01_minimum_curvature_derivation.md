@@ -45,7 +45,7 @@ $V_z = \cos(I)$
 
 Thus, the unit tangent vector at any station is:
 
-$$\hat{t} = \begin{bmatrix} \sin(I) \cos(A) \\ \sin(I) \sin(A) \\ \cos(I) \end{bmatrix}$$
+$$\hat{t} = \begin{bmatrix} \sin(I) \cos(A) \\\\ \sin(I) \sin(A) \\\\ \cos(I) \end{bmatrix}$$
 
 Sanity Checks for $\hat{t}$:
 
@@ -119,7 +119,7 @@ Thus, the Ratio Factor is proven to be:
 
 $$RF = \frac{2}{\alpha} \tan\left(\frac{\alpha}{2}\right)$$
 
-Task G: Small-$\alpha$ Limit and Numerical Stability
+Task G: Small - $$\alpha$$ Limit and Numerical Stability
 
 Using the Taylor expansion $\tan(x) = x + \frac{x^3}{3} + O(x^5)$:
 
