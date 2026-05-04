@@ -44,6 +44,8 @@ $V_y = V_{xy} \sin(A) = \sin(I) \sin(A)$
 $V_z = \cos(I)$
 
 Thus, the unit tangent vector at any station is:
+The decomposition above corresponds to the geometric construction shown below, derived by hand:
+![Tangent vector decomposition in the North-East-Down frame](vector_graph.png)
 
 $$\hat{t} = \begin{bmatrix} \sin(I) \cos(A) \\\\ \sin(I) \sin(A) \\\\ \cos(I) \end{bmatrix}$$
 
@@ -118,6 +120,9 @@ $$\Delta \vec{r} = \frac{\Delta MD}{2} \cdot \left[ \frac{2}{\alpha} \tan\left(\
 Thus, the Ratio Factor is proven to be:
 
 $$RF = \frac{2}{\alpha} \tan\left(\frac{\alpha}{2}\right)$$
+
+The full chain of arithmetic — from chord length to ratio factor — was derived by hand in the figure below:
+![Hand derivation of arc geometry and ratio factor](formula_deduction.png)
 
 Task G: Small - $$\alpha$$ Limit and Numerical Stability
 
