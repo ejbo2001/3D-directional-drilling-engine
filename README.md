@@ -12,6 +12,11 @@
 Industrial-grade web tool for the 3D calculation and visualization of oil well trajectories. Unlike basic geometric approximations, this engine implements the **Vectorized Minimum Curvature Method**, optimized using NumPy for the efficient processing of large volumes of directional data.
 
 Designed to assist in trajectory analysis, Dogleg Severity (DLS) evaluation, and drilling planning.
+## Theoretical notes
+This project is paired with derivation and design notes in [`notes/`](./notes/):
+
+- [`01_minimum_curvature_derivation.md`](./notes/01_minimum_curvature_derivation.md) — first-principles derivation of the Minimum Curvature Method, including the small-α limit and a mapping from equations to code.
+- [`02_survey_design_notes.md`](./notes/02_survey_design_notes.md) — design rationale for the `Survey` validated dataclass: validation checks, the parse-don't-validate pattern, immutability, hashability, and trade-offs.
 
 ### ✨ Main Features
 * **Multi-format Support:** Robust parsing and automatic cleaning of raw field reports in `.csv`, `.txt`, and `.las` (Log ASCII Standard) formats.
