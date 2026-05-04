@@ -34,3 +34,7 @@ Thumbs.db
 
 # Temporary diff artifacts (ad-hoc)
 *_diff.txt
+# Personal scratch files (kept locally, never committed)
+prueba.py
+# Notes drafts in progress (numbered 00 = workspace draft)
+notes/00_survey
