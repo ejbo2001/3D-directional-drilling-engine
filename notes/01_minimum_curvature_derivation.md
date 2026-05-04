@@ -127,10 +127,11 @@ $$RF = \frac{2}{\alpha}\tan\left(\frac{\alpha}{2}\right) = \frac{2}{\alpha}\left
 
 As $\alpha \to 0$, $RF \to 1$, and the displacement formula reduces to $\Delta \vec{r} = \Delta MD \cdot \frac{\hat{t}_1 + \hat{t}_2}{2}$ — which is the Balanced Tangential method. Minimum Curvature and Balanced Tangential agree in the straight-hole limit and diverge only where curvature matters.
 
-In the implementation, evaluating $(2/\alpha)\tan(\alpha/2)$ directly for very small $\alpha$ would produce a $0/0$ indeterminate form in floating-point arithmetic. The code therefore substitutes $RF = 1$ whenever $\alpha < 10^{-9}$ radians. The residual error is $O(\alpha^2/12) \approx 10^{-19}$, which is below IEEE 754 double-precision epsilon. The numerical guard is mathematically principled, not a hack.
+In the implementation, evaluating $(2/\alpha)*\tan(\alpha/2)$ directly for very small $\alpha$ would produce a $0/0$ indeterminate form in floating-point arithmetic. The code therefore substitutes $RF = 1$ whenever $\alpha < 10^{-9}$ radians. The residual error is $O(\alpha^2/12) \approx 10^{-19}$, which is below IEEE 754 double-precision epsilon. The numerical guard is mathematically principled, not a hack.
 
 Part 3: Mapping to the Implementation
 
+```
 Derivation                              →  engine code
 ────────────────────────────────────────────────────────────────────────
 cos α = sin I₁ sin I₂ cos(A₂-A₁)        →  cos_alpha = np.sin(inc_1) * np.sin(inc_2)
@@ -146,13 +147,14 @@ RF → 1 as α → 0 by Taylor expansion         (2.0/alpha_safe) * np.tan(alpha
 Δ_TVD = (Δ_MD/2)(cos I₁ + cos I₂) · RF  →  delta_tvd = (d_md/2) * (np.cos(inc_1)
                                              + np.cos(inc_2)) * rf
 
-Δ_N = (Δ_MD/2)(sin I₁ cos A₁            →  delta_ns = (d_md/2) * (np.sin(inc_1)
+Δ_N = (Δ_MD/2)(sin I₁ cos A₁           →  delta_ns = (d_md/2) * (np.sin(inc_1)
       + sin I₂ cos A₂) · RF                  * np.cos(azi_1) + np.sin(inc_2)
                                              * np.cos(azi_2)) * rf
 
-Δ_E = (Δ_MD/2)(sin I₁ sin A₁            →  delta_ew = (d_md/2) * (np.sin(inc_1)
+Δ_E = (Δ_MD/2)(sin I₁ sin A₁           →  delta_ew = (d_md/2) * (np.sin(inc_1)
       + sin I₂ sin A₂) · RF                  * np.sin(azi_1) + np.sin(inc_2)
                                              * np.sin(azi_2)) * rf
 
 DLS = α_deg · (30 / Δ_MD)               →  dls_interval = np.degrees(alpha) * (30.0
 (metric: degrees per 30 meters)              / d_md_safe)
+```
